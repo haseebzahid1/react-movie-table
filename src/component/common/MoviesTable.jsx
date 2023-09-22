@@ -5,10 +5,10 @@ import TableBody from "./TableBody";
 
 class MoviesTable extends Component {
   columns = [
-    { path: "title", lable: "Title" },
-    { path: "genre.name", lable: "genre.name" },
-    { path: "numberInStock", lable: "numberInStock" },
-    { path: "dailyRentalRate", lable: "dailyRentalRate" },
+    { path: "title", label: "Title" },
+    { path: "genre.name", label: "Name" },
+    { path: "numberInStock", label: "NumberInStock" },
+    { path: "dailyRentalRate", label: "DailyRentalRate" },
     { key: "like", content: movie => <Like /> },
     {
       key: "delete",
