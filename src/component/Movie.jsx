@@ -52,7 +52,7 @@ class Movies extends Component {
       sortColumn,
       movies: allMovies,
     } = this.state; // not write in state  selectedGenre and sortColumn
-    console.log(selectedGenre);
+    // console.log(selectedGenre);
     if (count === 0) return <p>There are no movies in the datbase</p>;
 
     const filtered =
