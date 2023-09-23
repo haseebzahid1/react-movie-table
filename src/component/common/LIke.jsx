@@ -10,3 +10,12 @@ class Like extends Component {
 }
  
 export default Like;
+
+
+// render() { 
+//     let classes = "fa fa-heart";
+//     if(!this.props.liked){
+//         classes += "-o"
+//     }
+//     return ( <i className={classes} onClick={this.props.onClick} style={{cursor: "pointer"}}></i> );
+// }

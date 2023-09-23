@@ -1,12 +1,10 @@
 import React, { Component } from "react";
-import Like from "./Like";
-
-import Table from "./Table";
-
+import Like from "../common/Like";
+import Table from '../common/Table'
 class MoviesTable extends Component {
   columns = [
     { path: "title", label: "Title" },
-    { path: "genre.name", label: "Name" },
+    { path: "genre.name", label: "Genre.name" },
     { path: "numberInStock", label: "NumberInStock" },
     { path: "dailyRentalRate", label: "DailyRentalRate" },
     { key: "like", content: movie => <Like /> },
@@ -23,12 +21,22 @@ class MoviesTable extends Component {
     },
   ];
   render() {
-    const { columns ,movies, onSort, sortColumn } = this.props
+    const { movies, onSort, sortColumn } = this.props; // _old props
     return (
-      <Table columns={columns} data={movies} onSort={onSort} sortColumn={sortColumn}/>
-    )
+      <div>
+        <Table 
+          columns={this.columns} 
+          data={movies} 
+          sortColumn={sortColumn}
+          onSort={onSort}
+         />
+      </div>
+    );
   }
 }
 
+// const MoviesTable = (props) => {
+
+// };
 
 export default MoviesTable;

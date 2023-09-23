@@ -1,6 +1,6 @@
 import React from 'react'
 
-const Navbar = () => {
+const Like = () => {
   return (
     <div>
        <h1>Like</h1>
@@ -8,4 +8,4 @@ const Navbar = () => {
   )
 }
 
-export default Navbar
+export default Like

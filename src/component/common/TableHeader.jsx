@@ -1,11 +1,11 @@
-import React,{Component} from "react";
+import React, { Component } from "react";
 class TableHeader extends Component {
   //  columns: array
   // sortColumn: object
   // onSort: function
-  raiseSort = path => {
+  raiseSort = (path) => {
     const sortColumn = { ...this.props.sortColumn };
-    
+
     if (sortColumn.path === path)
       sortColumn.order = sortColumn.order === "asc" ? "desc" : "asc";
     else {
@@ -14,27 +14,30 @@ class TableHeader extends Component {
     }
     // this.setState({ sortColumn:{path, order: 'asc' } }) _old
     this.props.onSort(sortColumn); //note
-
   };
 
   renderSortIcon = (column) => {
-    const {sortColumn} = this.props;
-    if(column.path !== sortColumn.path) return null;
-    if(sortColumn.order === "asc") return <i className="fa fa-sort-asc"></i>;
-    return <i className="fa fa-sort-desc"></i>
-}
+    const { sortColumn } = this.props;
+    if (column.path !== sortColumn.path) return null;
+    if (sortColumn.order === "asc") return <i className="fa fa-sort-asc"></i>;
+    return <i className="fa fa-sort-desc"></i>;
+  };
 
   render() {
     return (
-        <thead>
+      <thead>
         <tr>
-            {this.props.columns.map(column => (
-                <th className="clickable" key={column.path || column.key} onClick={()=> this.raiseSort(column.path)}>
-                     {column.label}{this.renderSortIcon(column)} 
-                </th>
-            ))}
+          {this.props.columns.map((column) => (
+            <th
+              className="clickable"
+              key={column.path || column.key}
+              onClick={() => this.raiseSort(column.path)}
+            >
+              {column.label} {this.renderSortIcon(column)}
+            </th>
+          ))}
         </tr>
-    </thead>
+      </thead>
     );
   }
 }
