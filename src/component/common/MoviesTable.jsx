@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import Like from "./Like";
-import TableHeader from "./TableHeader";
-import TableBody from "./TableBody";
+
+import Table from "./Table";
 
 class MoviesTable extends Component {
   columns = [
@@ -23,54 +23,12 @@ class MoviesTable extends Component {
     },
   ];
   render() {
-    const { movies, onSort, sortColumn } = this.props; // _old props
+    const { columns ,movies, onSort, sortColumn } = this.props
     return (
-      <table class="table">
-        <TableHeader
-          columns={this.columns}
-          sortColumn={sortColumn}
-          onSort={onSort}
-        />
-        <TableBody columns={this.columns} data={movies} />
-        {/* <thead>
-              <tr>
-                <th onClick={() => this.raiseSort('title')}>Title</th>
-                <th onClick={() => this.raiseSort('genre.name')}>Genre</th>
-                <th onClick={() => this.raiseSort('numberInStock')}>Stock</th>
-                <th onClick={() => this.raiseSort('dailyRentalRate')}>Rate</th>
-                <th></th>
-                <th></th>
-              </tr>
-            </thead> */}
-        {/* <tbody> */}
-        {/* {this.state.movies.map((movie) => ( */}
-        {/* {movies.map((movie) => (
-            <tr key={movie._id}>
-              <td>{movie.title}</td>
-              <td>{movie.genre.name}</td>
-              <td>{movie.numberInStock}</td>
-              <td>{movie.dailyRentalRate}</td>
-              <td>
-                <Like />
-              </td>
-              <td>
-                <button
-                  onClick={() => onDelete(movie)} //_old this.handleDelete
-                  className="btn btn-danger btn-sm"
-                >
-                  Delete
-                </button>
-              </td>
-            </tr>
-          ))}
-        </tbody> */}
-      </table>
-    );
+      <Table columns={columns} data={movies} onSort={onSort} sortColumn={sortColumn}/>
+    )
   }
 }
 
-// const MoviesTable = (props) => {
-
-// };
 
 export default MoviesTable;
