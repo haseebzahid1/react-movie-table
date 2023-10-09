@@ -6,7 +6,7 @@ import { useNavigate } from "react-router-dom";
 
 
 
-const MovieForm = ({history, match}) => {
+const MovieForm = () => {
   const navigate = useNavigate();
 
   const { id } = useParams();
