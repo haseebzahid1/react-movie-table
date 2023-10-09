@@ -14,6 +14,7 @@ import Page404 from "./component/Page404";
 
 class App extends Component {
   render() {
+    
     return (
       <React.Fragment>
         <Navbar />
