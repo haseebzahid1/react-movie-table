@@ -5,7 +5,7 @@ import "font-awesome/css/font-awesome.css";
 import { Route, Routes, Navigate } from "react-router-dom";
 import Navbar from "./component/Navbar";
 import Movies from "./component/Movie";
-// import RegisterForm from './component/RegisterForm';
+import RegisterForm from './component/RegisterForm';
 import LoginForm from "./component/LoginForm";
 import MovieForm from "./component/MovieForm";
 import Customers from "./component/Customers";
@@ -20,7 +20,7 @@ class App extends Component {
         <Navbar />
         <main className="container">
         <Routes>
-          {/* <Route path='/register' element={<RegisterForm />} /> */}
+          <Route path='/register' element={<RegisterForm />} />
           <Route path="/login" element={<LoginForm />} />
           <Route path="/movies/:id" element={<MovieForm />} />
           <Route path="/movies" element={<Movies />} />

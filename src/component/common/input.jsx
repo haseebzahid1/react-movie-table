@@ -8,6 +8,7 @@ const Input = ({ name, label, error, ...rest}) => {  // rest replace const Input
           <label htmlFor={name}>{label}</label>
           <input
             {...rest}
+            name={name}
             id={name}
             className="form-control"
             // type={type}
