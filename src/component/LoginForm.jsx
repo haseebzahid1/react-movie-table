@@ -1,6 +1,7 @@
 import React from "react";
 import Joi from "joi-browser";
-import Form from './common/form';
+import Form from './common/Form';
+// import { getGenres } from '../service/fakeGenreService';
 
 class LoginForm extends Form {
   state = {
@@ -11,6 +12,7 @@ class LoginForm extends Form {
   schema = { 
     username: Joi.string().required().label('Username'),
     password: Joi.string().required().label('Password'),
+
 }
 doSubmit = () => {
   console.log("Submitted")

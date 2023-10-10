@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { useParams } from "react-router";
-import { getMovie} from "../servies/fakeMovieService";
+import { saveMovie , getMovie} from "../servies/fakeMovieService";
 
 import { useNavigate } from "react-router-dom";
 
