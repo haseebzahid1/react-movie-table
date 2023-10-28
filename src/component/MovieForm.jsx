@@ -3,7 +3,7 @@ import { useParams } from "react-router";
 import Joi from "joi-browser";
 // import Form from "./common/Form";
 import { useNavigate } from "react-router-dom";
-import { getGenres, genres } from "../servies/fakeGenreService";
+import {  genres } from "../servies/fakeGenreService";
 import { saveMovie, getMovie } from "../servies/fakeMovieService";
 
 const MovieForm = () => {
@@ -17,14 +17,14 @@ const MovieForm = () => {
   });
 
   useEffect(() => {
-    debugger;
+   
     if(id === "new") return;
 
       const movie = getMovie(id);
       setFormData(movie);
     
 
-    console.log(movie)
+    // console.log(movie)
     // console.log(setFormData)
   }, []);
 
@@ -58,7 +58,7 @@ const MovieForm = () => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    console.log(formData);
+  
 
     const validationErrors = validateForm();
     console.log(validationErrors);
@@ -66,7 +66,7 @@ const MovieForm = () => {
       setErrors(validationErrors);
       return;
     } else {
-      debugger;
+      
       saveMovie(formData);
       navigate("/movies");
     }
