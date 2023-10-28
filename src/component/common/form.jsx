@@ -17,35 +17,15 @@ class Form extends Component {
     const errors = {};
     for (let item of error.details) errors[item.path[0]] = item.message;
     return errors;
-    // const errors = {};
-    // const {data} = this.state
-    // console.log(data)
-    // if(data.username.trim() === ''){
-    //   errors.username = 'Usernane is Required'
-    // }
-    // if(data.password.trim() === ''){
-    //   errors.password = 'Password is Required'
-    // }
-
-    // return Object.keys(errors).length === 0 ? null : errors
   };
+
   validateProperty = ({ name, value }) => {
     const obj = { [name]: value };
     const schema = { [name]: this.schema[name] };
     const { error } = Joi.validate(obj, schema);
     return error ? error.details[0].message : null;
-
-    // if(name === 'username'){
-    //   if(value.trim() === ''){
-    //     return 'Username is required.';
-    //   }
-    // }
-    // if(name === 'password'){
-    //   if(value.trim() === ''){
-    //     return 'Password is required'
-    //   }
-    // }
   };
+
   handleSubmit = (e) => {
     e.preventDefault();
 
@@ -112,3 +92,41 @@ class Form extends Component {
 }
 
 export default Form;
+
+
+
+
+
+
+
+
+
+// old example code
+
+// validate = () => {
+//   const errors = {};
+//   const {data} = this.state
+//   console.log(data)
+//   if(data.username.trim() === ''){
+//     errors.username = 'Usernane is Required'
+//   }
+//   if(data.password.trim() === ''){
+//     errors.password = 'Password is Required'
+//   }
+
+//   return Object.keys(errors).length === 0 ? null : errors
+// };
+
+
+// validateProperty = ({ name, value }) => {
+//   if(name === 'username'){
+//     if(value.trim() === ''){
+//       return 'Username is required.';
+//     }
+//   }
+//   if(name === 'password'){
+//     if(value.trim() === ''){
+//       return 'Password is required'
+//     }
+//   }
+// };
