@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { useParams } from "react-router";
 import Joi from "joi-browser";
-import Form from "./common/Form";
+// import Form from "./common/Form";
 import { useNavigate } from "react-router-dom";
 import { getGenres, genres } from "../servies/fakeGenreService";
 import { saveMovie, getMovie } from "../servies/fakeMovieService";
@@ -10,33 +10,39 @@ const MovieForm = () => {
   const navigate = useNavigate();
 
   const { id } = useParams();
-  const [selectedMovie, setSelectedMovie] = useState({
-    data: { title: "", genreId: "", numberInStock: "", dailyRentalRate: "" },
-    genres: [],
+  const [formData, setFormData] = useState({
+    title: "", genre: "", numberInStock: "", dailyRentalRate: "" 
+    // genres: [],
     // errors: {},
   });
-  
 
   useEffect(() => {
-    const movie = getMovie(id);
-    setSelectedMovie(movie);
+    debugger;
+    if(id === "new") return;
+
+      const movie = getMovie(id);
+      setFormData(movie);
+    
+
+    console.log(movie)
+    // console.log(setFormData)
   }, []);
 
-  const [formData, setFormData] = useState({
-    title: "",
-    genre: "",
-    numberInStock: "",
-    dailyRentalRate: "",
-  });
+  // const [formData, setFormData] = useState({
+  //   title: "",
+  //   genre: "",
+  //   numberInStock: "",
+  //   dailyRentalRate: "",
+  // });
 
   const [errors, setErrors] = useState({});
 
-  
   const schema = Joi.object({
     title: Joi.string().min(3).required(),
     genre: Joi.string().min(3).required(),
     numberInStock: Joi.string().min(1).required(),
     dailyRentalRate: Joi.string().min(1).required(),
+    _id:Joi.string().optional()
   });
 
   const validateForm = () => {
@@ -53,26 +59,23 @@ const MovieForm = () => {
   const handleSubmit = (e) => {
     e.preventDefault();
     console.log(formData);
- 
 
     const validationErrors = validateForm();
-    console.log(validationErrors)
+    console.log(validationErrors);
     if (validationErrors) {
       setErrors(validationErrors);
       return;
-    }else{
+    } else {
       debugger;
-      saveMovie(formData)
-      navigate("/movies")
+      saveMovie(formData);
+      navigate("/movies");
     }
-
 
     // Form is valid, handle submission logic here
     console.log("Form submitted:", formData);
   };
 
   const handleInputChange = (e) => {
- 
     const { name, value } = e.target;
     setFormData({
       ...formData,
@@ -89,6 +92,7 @@ const MovieForm = () => {
 
   return (
     <div>
+     
       <form className="mb-5" onSubmit={handleSubmit}>
         <div className="form-group">
           <label className="mb-2" htmlFor="title">
@@ -113,26 +117,22 @@ const MovieForm = () => {
           <select
             name="genre"
             id="genre"
-            value={formData.genre}
+            value={formData.genre._id}
             onChange={handleInputChange}
             className="form-select form-control"
           >
-            <option value="">Select a Movie</option>
+            <option value="">Select a Genre</option>
             {genres.map((option) => (
               <option key={option._id} value={option._id}>
                 {option.name}
               </option>
             ))}
-            {/* <option value="">Select a Genre</option>
-          <option value="Action">Action</option>
-          <option value="Comedy">Comedy</option>
-          <option value="Thriller">Thriller</option> */}
           </select>
         </div>
 
         <div className="form-group mt-4">
           <label className="mb-2" htmlFor="numberInStock">
-           Number In Stock
+            Number In Stock
           </label>
           <input
             name="numberInStock"
@@ -157,7 +157,9 @@ const MovieForm = () => {
             onChange={handleInputChange}
           />
         </div>
-        {errors.dailyRentalRate && <div className="error">{errors.dailyRentalRate}</div>}
+        {errors.dailyRentalRate && (
+          <div className="error">{errors.dailyRentalRate}</div>
+        )}
         <button type="submit" className="btn btn-primary mt-5">
           Submit
         </button>
