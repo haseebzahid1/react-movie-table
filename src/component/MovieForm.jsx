@@ -3,7 +3,7 @@ import { useParams } from "react-router";
 import Joi from "joi-browser";
 // import Form from "./common/Form";
 import { useNavigate } from "react-router-dom";
-import {  genres } from "../servies/fakeGenreService";
+import { genres } from "../servies/fakeGenreService";
 import { saveMovie, getMovie } from "../servies/fakeMovieService";
 
 const MovieForm = () => {
@@ -11,29 +11,17 @@ const MovieForm = () => {
 
   const { id } = useParams();
   const [formData, setFormData] = useState({
-    title: "", genre: "", numberInStock: "", dailyRentalRate: "" 
-    // genres: [],
-    // errors: {},
+    title: "",
+    genre: "",
+    numberInStock: "",
+    dailyRentalRate: "",
   });
 
   useEffect(() => {
-   
-    if(id === "new") return;
-
-      const movie = getMovie(id);
-      setFormData(movie);
-    
-
-    // console.log(movie)
-    // console.log(setFormData)
+    if (id === "new") return;
+    const movie = getMovie(id);
+    setFormData(movie);
   }, []);
-
-  // const [formData, setFormData] = useState({
-  //   title: "",
-  //   genre: "",
-  //   numberInStock: "",
-  //   dailyRentalRate: "",
-  // });
 
   const [errors, setErrors] = useState({});
 
@@ -42,7 +30,7 @@ const MovieForm = () => {
     genre: Joi.string().min(3).required(),
     numberInStock: Joi.string().min(1).required(),
     dailyRentalRate: Joi.string().min(1).required(),
-    _id:Joi.string().optional()
+    _id: Joi.string().optional(),
   });
 
   const validateForm = () => {
@@ -58,7 +46,6 @@ const MovieForm = () => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-  
 
     const validationErrors = validateForm();
     console.log(validationErrors);
@@ -66,7 +53,6 @@ const MovieForm = () => {
       setErrors(validationErrors);
       return;
     } else {
-      
       saveMovie(formData);
       navigate("/movies");
     }
@@ -92,8 +78,8 @@ const MovieForm = () => {
 
   return (
     <div>
-     
       <form className="mb-5" onSubmit={handleSubmit}>
+        
         <div className="form-group">
           <label className="mb-2" htmlFor="title">
             Name
@@ -157,6 +143,7 @@ const MovieForm = () => {
             onChange={handleInputChange}
           />
         </div>
+
         {errors.dailyRentalRate && (
           <div className="error">{errors.dailyRentalRate}</div>
         )}
@@ -164,9 +151,7 @@ const MovieForm = () => {
           Submit
         </button>
       </form>
-      {/* <button className="btn btn-primary" onClick={() => navigate("/movies")}>
-        Save
-      </button> */}
+     
     </div>
   );
 };
