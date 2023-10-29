@@ -48,7 +48,7 @@ const MovieForm = () => {
     e.preventDefault();
 
     const validationErrors = validateForm();
-    console.log(validationErrors);
+    // console.log(validationErrors);
     if (validationErrors) {
       setErrors(validationErrors);
       return;
@@ -147,7 +147,7 @@ const MovieForm = () => {
         {errors.dailyRentalRate && (
           <div className="error">{errors.dailyRentalRate}</div>
         )}
-        <button type="submit" className="btn btn-primary mt-5">
+        <button  disabled={validateForm()} type="submit" className="btn btn-primary mt-5">
           Submit
         </button>
       </form>
